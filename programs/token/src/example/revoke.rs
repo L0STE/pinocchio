@@ -1,5 +1,5 @@
 use pinocchio::{
-    account_info::AccountInfo, entrypoint::ProgramResult, program_error::ProgramError, pubkey::Pubkey
+    account_info::AccountInfo, ProgramResult, program_error::ProgramError,
 };
 
 use crate::instructions::Revoke;

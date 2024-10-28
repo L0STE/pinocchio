@@ -6,19 +6,20 @@ pub mod state;
 pinocchio_pubkey::declare_id!("11111111111111111111111111111111");
 
 mod example;
-use example::{TestInstruction, transfer::transfer};
+use example::{TestInstruction, transfer::transfer, revoke::revoke, thaw_account::thaw_account, 
+    transfer_checked::transfer_checked, sync_native::sync_native, mint_to::mint_to,
+    initialize_mint::initialize_mint, mint_to_checked::mint_to_checked
+};
 
 use pinocchio::account_info::AccountInfo;
 use pinocchio::entrypoint;
 use pinocchio::pubkey::Pubkey;
-use pinocchio::{entrypoint::ProgramResult, program_error::ProgramError};
+use pinocchio::ProgramResult;
+use pinocchio::program_error::ProgramError;
 
 entrypoint!(process_instruction);
 
 pub const PDA_MARKER: &[u8; 21] = b"ProgramDerivedAddress";
-
-pub const ID: [u8; 32] =
-    five8_const::decode_32_const("22222222222222222222222222222222222222222222");
 
 fn process_instruction(
     _program_id: &Pubkey,
@@ -30,6 +31,14 @@ fn process_instruction(
         .ok_or(ProgramError::InvalidInstructionData)?;
 
     match TestInstruction::try_from(discriminator)? {
-        TestInstruction::Tranfer => transfer(accounts, data),
+        TestInstruction::InitializeMint => initialize_mint(accounts, data),
+        TestInstruction::Transfer => transfer(accounts, data),
+        TestInstruction::Revoke => revoke(accounts),
+        TestInstruction::MintTo => mint_to(accounts, data),
+        TestInstruction::ThawAccount => thaw_account(accounts),
+        TestInstruction::TransferChecked => transfer_checked(accounts, data),
+        TestInstruction::MintToChecked => mint_to_checked(accounts, data),
+        TestInstruction::SyncNative => sync_native(accounts),
+
     }
 }
