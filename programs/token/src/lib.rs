@@ -5,9 +5,8 @@ pub mod state;
 
 pinocchio_pubkey::declare_id!("11111111111111111111111111111111");
 
-mod cpi;
-use cpi::transfer::transfer;
-use cpi::TestInstruction;
+mod example;
+use example::{TestInstruction, transfer::transfer};
 
 use pinocchio::account_info::AccountInfo;
 use pinocchio::entrypoint;
