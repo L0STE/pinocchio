@@ -11,7 +11,12 @@ pub fn transfer(accounts: &[AccountInfo], data: &[u8]) -> ProgramResult {
 
     let amount = unsafe { *(data.as_ptr() as *const u64) };
 
-    Transfer { from, to, authority, amount }.invoke()?;
+    Transfer { 
+        from, 
+        to, 
+        authority, 
+        amount 
+    }.invoke()?;
    
     Ok(())
 }
