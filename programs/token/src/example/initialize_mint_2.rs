@@ -4,7 +4,7 @@ use pinocchio::{
 
 use crate::instructions::InitilizeMint2;
 
-pub fn initialize_mint(accounts: &[AccountInfo], data: &[u8]) -> ProgramResult {
+pub fn initialize_mint_2(accounts: &[AccountInfo], data: &[u8]) -> ProgramResult {
     let [mint, mint_2, _token_program] = accounts else {
         return Err(ProgramError::NotEnoughAccountKeys);
     };
