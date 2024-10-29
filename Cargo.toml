@@ -3,7 +3,7 @@ resolver = "2"
 members = [
     "programs/system",
     "programs/token",
-    "programs/token/src/examples",
+    # "programs/token/src/examples",
     "sdk/pinocchio",
     "sdk/pubkey",
 ]

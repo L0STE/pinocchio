@@ -8,7 +8,12 @@ pinocchio_pubkey::declare_id!("11111111111111111111111111111111");
 mod example;
 use example::{TestInstruction, transfer::transfer, revoke::revoke, thaw_account::thaw_account, 
     transfer_checked::transfer_checked, sync_native::sync_native, mint_to::mint_to,
-    initialize_mint::initialize_mint, mint_to_checked::mint_to_checked
+    initialize_mint::initialize_mint, mint_to_checked::mint_to_checked, 
+    approve_checked::approve_checked, approve::approve, burn_checked::burn_checked, burn::burn, 
+    close_account::close_account, freeze_account::freeze_account, initialize_account::initialize_account,
+    initialize_account_2::initialize_account_2, initialize_account_3::initialize_account_3,
+
+
 };
 
 use pinocchio::account_info::AccountInfo;
@@ -39,6 +44,14 @@ fn process_instruction(
         TestInstruction::TransferChecked => transfer_checked(accounts, data),
         TestInstruction::MintToChecked => mint_to_checked(accounts, data),
         TestInstruction::SyncNative => sync_native(accounts),
-
+        TestInstruction::ApproveChecked => approve_checked(accounts, data),
+        TestInstruction::Approve => approve(accounts, data),
+        TestInstruction::BurnChecked => burn_checked(accounts, data),
+        TestInstruction::Burn => burn(accounts, data),
+        TestInstruction::CloseAccount => close_account(accounts),
+        TestInstruction::FreezeAccount => freeze_account(accounts),
+        TestInstruction::InitializeAccount => initialize_account(accounts),
+        TestInstruction::InitializeAccount2 => initialize_account_2(accounts, data),
+        TestInstruction::InitializeAccount3 => initialize_account_3(accounts, data),
     }
 }
