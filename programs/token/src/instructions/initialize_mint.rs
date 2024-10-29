@@ -4,7 +4,6 @@ use pinocchio::{
     account_info::AccountInfo,
     instruction::{AccountMeta, Instruction, Signer},
     program::invoke_signed,
-    pubkey::Pubkey,
     ProgramResult,
 };
 
@@ -21,9 +20,9 @@ pub struct InitilizeMint<'a> {
     /// Decimals.
     pub decimals: u8,
     /// Mint Authority.
-    pub mint_authority: Pubkey,
+    pub mint_authority: [u8; 32],
     /// Freeze Authority.
-    pub freeze_authority: Option<Pubkey>,
+    pub freeze_authority: Option<[u8; 32]>,
 }
 
 impl<'a> InitilizeMint<'a> {
@@ -55,11 +54,11 @@ impl<'a> InitilizeMint<'a> {
             // Set decimals as u8 at offset [1]
             *ptr.add(1) = self.decimals;
             // Set mint_authority as Pubkey at offset [2..34]
-            *(ptr.add(2) as *mut Pubkey) = self.mint_authority;
+            *(ptr.add(2) as *mut [u8; 32]) = self.mint_authority;
             // Set COption & freeze_authority at offset [34..70]
             if let Some(freeze_auth) = self.freeze_authority {
                 *(ptr.add(34) as *mut  u32) = 1;
-                *(ptr.add(38) as *mut Pubkey) = freeze_auth;
+                *(ptr.add(38) as *mut [u8; 32]) = freeze_auth;
             } else {
                 *(ptr.add(34) as *mut [u8; 36]) = [0; 36];
             }

@@ -1,7 +1,10 @@
 use core::mem::MaybeUninit;
 
 use pinocchio::{
-    account_info::AccountInfo, instruction::{AccountMeta, Instruction, Signer}, program::invoke_signed, pubkey::Pubkey, ProgramResult
+    account_info::AccountInfo,
+    instruction::{AccountMeta, Instruction, Signer},
+    program::invoke_signed,
+    ProgramResult,
 };
 
 /// Sets a new authority of a mint or account.

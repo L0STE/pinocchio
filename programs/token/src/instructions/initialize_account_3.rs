@@ -1,7 +1,10 @@
 use core::mem::MaybeUninit;
 
 use pinocchio::{
-    account_info::AccountInfo, instruction::{AccountMeta, Instruction, Signer}, program::invoke_signed, pubkey::Pubkey, ProgramResult
+    account_info::AccountInfo, 
+    instruction::{AccountMeta, Instruction, Signer},
+    program::invoke_signed, 
+    ProgramResult
 };
 
 /// Initialize a new Token Account.
@@ -15,7 +18,7 @@ pub struct InitilizeAccount3<'a> {
     /// Mint Account.
     pub mint: &'a AccountInfo,
     /// Owner of the new Account.
-    pub owner: Pubkey
+    pub owner: [u8; 32]
 }
 
 impl<'a> InitilizeAccount3<'a> {
@@ -42,7 +45,7 @@ impl<'a> InitilizeAccount3<'a> {
             // Set discriminator as u8 at offset [0]
             *ptr = 18;
             // Set owner as Pubkey at offset [1..33]
-            *(ptr.add(1) as *mut Pubkey) = self.owner;
+            *(ptr.add(1) as *mut [u8; 32]) = self.owner;
         }
 
         let instruction = Instruction {

@@ -1,5 +1,8 @@
 use pinocchio::{
-    account_info::AccountInfo, instruction::{AccountMeta, Instruction, Signer}, program::invoke_signed, ProgramResult
+    account_info::AccountInfo,
+    instruction::{AccountMeta, Instruction, Signer},
+    program::invoke_signed,
+    ProgramResult,
 };
 
 /// Revokes the delegate's authority.

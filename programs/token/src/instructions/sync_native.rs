@@ -1,5 +1,8 @@
 use pinocchio::{
-    account_info::AccountInfo, instruction::{AccountMeta, Instruction, Signer}, program::invoke_signed, ProgramResult
+    account_info::AccountInfo,
+    instruction::{AccountMeta, Instruction, Signer},
+    program::invoke_signed,
+    ProgramResult,
 };
 
 /// Given a native token account updates its amount field based 

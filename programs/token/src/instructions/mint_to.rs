@@ -1,7 +1,10 @@
 use core::mem::MaybeUninit;
 
 use pinocchio::{
-    account_info::AccountInfo, instruction::{AccountMeta, Instruction, Signer}, program::invoke_signed, ProgramResult
+    account_info::AccountInfo,
+    instruction::{AccountMeta, Instruction, Signer},
+    program::invoke_signed,
+    ProgramResult,
 };
 
 /// Mints new tokens to an account.
