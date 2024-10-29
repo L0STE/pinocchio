@@ -10,3 +10,8 @@ repository = "https://github.com/febo/pinocchio"
 [dependencies]
 pinocchio = { version="0.6", path="../../sdk/pinocchio" }
 pinocchio-pubkey = { version="0.2.1", path="../../sdk/pubkey" }
+
+[dev-dependencies]
+mollusk-svm = { git = "https://github.com/buffalojoec/mollusk.git" }
+solana-sdk = "2.0.14"
+spl-token = "6.0.0"

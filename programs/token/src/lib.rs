@@ -5,6 +5,9 @@ pub mod state;
 
 pinocchio_pubkey::declare_id!("11111111111111111111111111111111");
 
+#[cfg(test)]
+mod tests;
+
 mod example;
 use example::{TestInstruction, transfer::transfer, revoke::revoke, thaw_account::thaw_account, 
     transfer_checked::transfer_checked, sync_native::sync_native, mint_to::mint_to,
