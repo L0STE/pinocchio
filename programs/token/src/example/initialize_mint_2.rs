@@ -9,7 +9,7 @@ pub fn initialize_mint_2(accounts: &[AccountInfo], data: &[u8]) -> ProgramResult
         return Err(ProgramError::NotEnoughAccountKeys);
     };
 
-    let decimals = data[0];    
+    let decimals = data[21];    
     let mint_authority = unsafe { *(data.as_ptr().add(1) as *mut Pubkey) };
     let freeze_authority = unsafe { *(data.as_ptr().add(33) as *mut Pubkey) };
 
