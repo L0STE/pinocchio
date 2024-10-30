@@ -1,4 +1,7 @@
+use crate::ID;
+
 use super::AccountState;
+
 use pinocchio::{account_info::AccountInfo, pubkey::Pubkey};
 
 pub struct TokenAccount(*const u8);
@@ -18,7 +21,7 @@ impl TokenAccount {
 
     pub fn from_account_info(account_info: &AccountInfo) -> Self {
         assert_eq!(account_info.data_len(), Self::LEN);
-        assert_eq!(account_info.owner(), &crate::ID);
+        assert_eq!(account_info.owner(), &ID);
         Self::from_account_info_unchecked(account_info)
     }
 

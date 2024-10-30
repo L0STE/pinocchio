@@ -13,7 +13,7 @@ use pinocchio::{
 ///   2. `[SIGNER]` The account's owner.
 pub struct CloseAccount<'a> {
     /// Token Account.
-    pub token: &'a AccountInfo,
+    pub account: &'a AccountInfo,
     /// Destination Account
     pub destination: &'a AccountInfo,
     /// Owner Account
@@ -29,7 +29,7 @@ impl<'a> CloseAccount<'a> {
     pub fn invoke_signed(&self, signers: &[Signer]) -> ProgramResult {
         // account metadata
         let account_metas: [AccountMeta; 3] = [
-            AccountMeta::writable(self.token.key()),
+            AccountMeta::writable(self.account.key()),
             AccountMeta::writable(self.destination.key()),
             AccountMeta::readonly_signer(self.authority.key())
         ];
@@ -42,7 +42,7 @@ impl<'a> CloseAccount<'a> {
 
         invoke_signed(
             &instruction, 
-            &[self.token, self.destination, self.authority], 
+            &[self.account, self.destination, self.authority], 
             signers
         )
     }
