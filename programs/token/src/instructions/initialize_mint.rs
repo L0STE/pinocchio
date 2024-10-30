@@ -44,7 +44,7 @@ impl<'a> InitilizeMint<'a> {
         // -  [2..34]: mint_authority 
         // -  [34..38]: freeze_authority presence flag 
         // -  [38..70]: freeze_authority 
-        let mut instruction_data = MaybeUninit::<[u8; 70]>::uninit();
+        let mut instruction_data = MaybeUninit::<[u8; 67]>::uninit();
 
         // Populate data
         unsafe {
@@ -55,12 +55,12 @@ impl<'a> InitilizeMint<'a> {
             *ptr.add(1) = self.decimals;
             // Set mint_authority as Pubkey at offset [2..34]
             *(ptr.add(2) as *mut [u8; 32]) = self.mint_authority;
-            // Set COption & freeze_authority at offset [34..70]
+            // Set COption & freeze_authority at offset [34..67]
             if let Some(freeze_auth) = self.freeze_authority {
-                *(ptr.add(34) as *mut  u32) = 1;
-                *(ptr.add(38) as *mut [u8; 32]) = freeze_auth;
+                *(ptr.add(34) as *mut  u8) = 1;
+                *(ptr.add(35) as *mut [u8; 32]) = freeze_auth;
             } else {
-                *(ptr.add(34) as *mut [u8; 36]) = [0; 36];
+                *(ptr.add(34) as *mut [u8; 33]) = [0; 33];
             }
         }
 
